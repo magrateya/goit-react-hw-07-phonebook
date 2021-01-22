@@ -11,7 +11,7 @@ form {
 }
 .formBtn {
   padding: 5px 15px;
-  align-self: flex-end;
+  align-self: center;
 }
 .formBtn:hover {
   background-color: #227044;
