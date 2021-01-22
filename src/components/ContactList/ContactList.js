@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 import s from './ContactList.module.css';
-import { getVisibleContacts } from '../../redux/selectors';
+import { getVisibleContacts, getError } from '../../redux/selectors';
 import { fetchContacts, deleteContact } from '../../redux/operations';
 import Disconnect from '../../img/disconnect.jpg';
 
 export default function ContactList() {
   const contacts = useSelector(getVisibleContacts);
+  const error = useSelector(getError);
+
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchContacts()), [dispatch]);
@@ -17,7 +19,7 @@ export default function ContactList() {
   console.log(contacts);
   return (
     <>
-      {contacts.length > 0 ? (
+      {contacts.length > 0 && !error ? (
         <ul className={s.contactList}>
           {contacts.map(contact => (
             <ContactItem
@@ -30,15 +32,14 @@ export default function ContactList() {
           ))}
         </ul>
       ) : (
-        <>
-          <div>
-            <img
-              src={Disconnect}
-              alt="disconnect"
-              style={{ width: '600px', marginTop: '20px' }}
-            />
-          </div>
-        </>
+        <div>
+          {error && <h2>{error.message}</h2>}
+          <img
+            src={Disconnect}
+            alt="disconnect"
+            style={{ width: '600px', marginTop: '20px' }}
+          />
+        </div>
       )}
     </>
   );
