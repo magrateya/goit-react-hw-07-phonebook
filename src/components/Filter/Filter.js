@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
+
 import s from './Filter.module.css';
 import { changeFilter } from '../../redux/actions';
 import { getFilter } from '../../redux/selectors';

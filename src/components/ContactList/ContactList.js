@@ -1,4 +1,3 @@
-// import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
